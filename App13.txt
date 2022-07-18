@@ -1,4 +1,4 @@
-Código até a aula 13
+/* Código até a aula 13 */
 
 import React, {Component} from 'react';
 import { View, Text, Image, Button} from 'react-native'; /* IMPORTAÇÃO DOS COMPONENTES QUE SERÃO USADOS NO APP */
