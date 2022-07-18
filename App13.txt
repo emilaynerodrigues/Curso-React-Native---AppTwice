@@ -1,0 +1,72 @@
+Código até a aula 13
+
+import React, {Component} from 'react';
+import { View, Text, Image, Button} from 'react-native'; /* IMPORTAÇÃO DOS COMPONENTES QUE SERÃO USADOS NO APP */
+
+class App extends Component{
+  render(){
+    return(
+      <View>
+        <Header />
+        <Body alturaBody= {650} alturaImg= {220} larguraImg= {220}/>
+        <Footer />
+      </View>
+    );  
+  }
+}
+
+class Header extends Component{
+  render(){
+    return(
+      <View style={{height:90 , backgroundColor: '#fff222'}}>
+        <Text style ={{marginTop: 45, textAlign: 'center', fontSize: 20}}>Header</Text>          
+      </View>
+    );  
+  }
+}
+
+class Body extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      img: 'https://cdn-icons-png.flaticon.com/512/616/616430.png' //Foto que é impressa ao rodar o app pela primeira vez
+    };
+
+    this.mudar = this.mudar.bind(this) //isso faz com que a função seja capaz de acessar as props quando houver interação com a função
+  }
+
+  mudar(img){
+    this.setState({
+      img: img //img exibida quando usuário clica no botão
+    })
+  }
+
+  render(){
+
+    //let img = img = 'https://cdn-icons-png.flaticon.com/512/616/616430.png';
+
+    return(
+      <View style={{justifyContent:'center', alignItems: 'center', height: this.props.alturaBody, backgroundColor: '#ff0000'}}>
+          <Text style={{fontSize: 20}}>Body</Text>
+          <Button title='Mudar foto' onPress={ () => this.mudar('https://cdn-icons-png.flaticon.com/512/3209/3209928.png') }/>
+          <Image 
+              source={{uri: this.state.img}}
+              style={{marginTop: 20, width: this.props.larguraImg, height: this.props.alturaImg}}
+          />
+      </View>
+    );
+  }
+}
+
+class Footer extends Component{
+  render(){
+    return(
+      <View style={{justifyContent: 'center' , height: 67, backgroundColor: 'green'}}>
+        <Text style={{textAlign: 'center', fontSize: 20}}>Footer</Text>
+      </View>
+    );
+  }
+}
+
+export default App; //pode ser exportado junto com a função App

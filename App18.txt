@@ -1,0 +1,120 @@
+AULA 18 - ENTRADA DE DADOS SEM BOTÃO
+
+import React, {Component} from 'react';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native'; /* IMPORTAÇÃO DOS COMPONENTES QUE SERÃO USADOS NO APP */
+
+class App extends Component{
+  render(){
+    return(
+      <View style={styles.container}>
+        <Header/>
+        <Body/>
+        <Footer/>
+      </View>
+    );  
+  }
+}
+
+class Header extends Component{
+  render(){
+    return(
+        <View style={styles.containerHeader}>
+          <Text style={styles.texto}>Header</Text>          
+        </View>
+    );  
+  }
+}
+
+class Body extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      nome: ''
+    };
+
+    this.setNome = this.setNome.bind(this)
+  }
+
+  setNome(texto){
+    if (texto.length > 0){
+      this.setState({nome:'Bem-vindo, ' + texto})
+    }else{
+      this.setState({nome: ''})
+    }
+  }
+
+
+  render(){
+    return(
+        <View style={styles.containerBody}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.input}
+              placeholder='Digite seu nome aqui'
+              underlineColorAndroid='transparent'
+              onChangeText={this.setNome} // quando o usuário inserir um texto sera mostrado simultaneamente na tela
+            />    
+          </View>
+          <Text style={styles.texto}>{this.state.nome}</Text>
+        </View>
+    );
+  }
+}
+
+class Footer extends Component{
+  render(){
+    return(
+        <View style={styles.containerTab}>
+          <Text style={styles.texto}>Tabs</Text>          
+        </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  containerHeader:{  
+    justifyContent: 'center',
+    flex: 1,
+    //height: '10%',
+    backgroundColor:'#fef1d1',
+  },
+  containerBody:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 8,
+    //height: '80%',
+    backgroundColor: '#f3f3',
+  },
+  containerTab:{
+    justifyContent: 'center',
+    flex: 1,
+    //height: '10%',
+    backgroundColor: '#e3e3e3',
+  },
+  container:{
+    flex: 1,
+    marginTop: 5,
+    borderWidth: 5,
+    borderColor: 'red',
+  },
+  texto:{
+    textAlign: 'center', 
+    fontSize: 25,
+  },
+  inputContainer:{
+    flexDirection: 'row',
+    margin: 10,
+  },
+  input:{
+    height: 70,
+    width: '80%',
+    padding: 10,
+    marginRight: 10,
+    borderWidth: 2,
+    borderColor: 'black',
+    fontSize: 20,
+  },
+});
+
+export default App; //pode ser exportado junto com a função App
